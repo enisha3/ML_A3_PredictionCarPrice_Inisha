@@ -1,0 +1,79 @@
+name: CICD for Car Price Prediction A3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Project Repo
+      uses: actions/checkout@v3
+
+    - name: Python Environment Configuration
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12.5'
+
+    - name: Install Required Packages
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirement.txt
+
+    - name: Perform Unit Testing
+      run: |
+        pytest
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - name: Checkout Project Repo
+      uses: actions/checkout@v3
+
+    - name: DockerHub Authentication
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Create Docker Deployment Image
+      run: docker build -t nehastha/a3-car-price:latest .
+
+    - name: Deploy Docker Image to DockerHub
+      run: docker push nehastha/a3-car-price:latest
+
+    - name: Configure Docker and SSH Access
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/st125563
+        chmod 600 ~/.ssh/st125563
+
+        cat << 'EOF' > ~/.ssh/config
+        Host bazooka
+          HostName bazooka.cs.ait.ac.th
+          User st125563
+          IdentityFile ~/.ssh/st125563
+
+        Host ml2023
+          HostName ml.brain.cs.ait.ac.th
+          User st125563
+          IdentityFile ~/.ssh/st125563
+          ProxyJump bazooka
+          StrictHostKeyChecking no
+          UserKnownHostsFile /dev/null
+        EOF
+        chmod 600 ~/.ssh/config
+
+        ssh-keyscan -p 22 -H bazooka.cs.ait.ac.th >> ~/.ssh/known_hosts 2>/dev/null 
+        chmod 600 ~/.ssh/known_hosts
+
+    - name: Deploy to ml2025
+      run: |
+        ssh -v st125563@ml2023 << 'EOF'
+        cd st125563/
+        docker compose down
+        docker compose pull 
+        docker compose up -d 
+        EOF
