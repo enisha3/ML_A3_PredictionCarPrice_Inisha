@@ -32,12 +32,12 @@ jobs:
         Host bazooka
           HostName bazooka.cs.ait.ac.th
           User st125563
-          IdentityFile ~/.ssh/st125563
+          IdentityFile /Users/inisha.pradhan/Inisha_ML/Assignment/ssh/st125563
 
         Host ml2023
           HostName ml.brain.cs.ait.ac.th
           User st125563
-          IdentityFile ~/.ssh/st125563
+          IdentityFile /Users/inisha.pradhan/Inisha_ML/Assignment/ssh/st125563
           ProxyJump bazooka
           StrictHostKeyChecking no
           UserKnownHostsFile /dev/null
