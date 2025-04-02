@@ -25,8 +25,8 @@ jobs:
     - name: Configure Docker and SSH Access
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/st125563
-        chmod 600 ~/.ssh/st125563
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > /Users/inisha.pradhan/Inisha_ML/Assignment/ssh/st125563
+        chmod 600 /Users/inisha.pradhan/Inisha_ML/Assignment/ssh/st125563
 
         cat << 'EOF' > ~/.ssh/config
         Host bazooka
