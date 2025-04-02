@@ -16,7 +16,7 @@ mlflow.set_tracking_uri("https://mlflow.ml.brain.cs.ait.ac.th/")
 os.environ["MLFLOW_TRACKING_USERNAME"] = "admin"
 os.environ["MLFLOW_TRACKING_PASSWORD"] = "password"
 model_name = "st125563-a3-model"
-model_version = 1
+model_version = 3
 
 # loading the models
 model = mlflow.pyfunc.load_model(model_uri=f"models:/{model_name}/{model_version}")

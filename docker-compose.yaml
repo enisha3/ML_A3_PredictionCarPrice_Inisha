@@ -1,0 +1,18 @@
+# version: '3.9'
+
+services:
+  dash:
+    command: python3 app/app.py
+    image: inisha5563/car_price_prediction:a3.0
+    platform: linux/x86_64
+    build: 
+      context: .
+      dockerfile: .Dockerfile
+    ports:
+      - 8050:80
+    volumes:
+      - .:/root/
+      - ./.vscode-server:/root/.vscode-server
+    environment:
+      - HOST=0.0.0.0
+      - PORT=80
