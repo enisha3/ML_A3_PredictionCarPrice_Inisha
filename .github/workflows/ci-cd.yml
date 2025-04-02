@@ -17,10 +17,10 @@ jobs:
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
     - name: Create Docker Deployment Image
-      run: docker build -t nehastha/a3-car-price:latest .
+      run: docker build -t inishapradhan/a3-car-price:latest .
 
     - name: Deploy Docker Image to DockerHub
-      run: docker push nehastha/a3-car-price:latest
+      run: docker push inishapradhan/a3-car-price:latest
 
     - name: Configure Docker and SSH Access
       run: |
