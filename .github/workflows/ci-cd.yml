@@ -54,16 +54,19 @@ jobs:
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.1.0
         with:
-          host: ${{ vars.HOST }}
+          host: ${{vars.HOST}}
           username: ${{ secrets.USERNAME }}
-          password: ${{secrets.PROXY_PASSWORD}}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          proxy_host: ${{ vars.PROXY_HOST }}
+          proxy_host: ${{vars.PROXY_HOST}}
           proxy_username: ${{ secrets.USERNAME }}
-          proxy_password: ${{ secrets.PROXY_PASSWORD }}
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          proxy_port: 22
+          timeout: 30s
+          proxy_timeout: 30s
+          command_timeout: 10m
           script: |
             docker pull inisha5563/a3-car-price:latest
-            docker compose -f st125563/docker-compose.yaml down --remove-orphans
-            docker compose -f st125563/docker-compose.yaml down --remove-orphans 
-            docker compose -f st125563/docker-compose.yaml up -d
+            docker compose -f /path/to/docker-compose.yaml down --remove-orphans
+            docker compose -f /path/to/docker-compose.yaml up -d
+          debug: true
