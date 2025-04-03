@@ -1,14 +1,24 @@
-from app.app import prediction, get_X
+import os
+import cloudpickle
+import numpy as np
 
-features_val = ['1248.0', '19.391961863322244','60000.0','2015.0']
+base_path = os.path.dirname(os.path.abspath(__file__))
 
-#testing if model takes the expected input
-def test_get_X():
-    output = get_X(*features_val)
-    assert output == ('1248.0', '19.391961863322244','60000.0','2015.0'), f" Got: {output}"
+model = cloudpickle.load(open(os.path.join(base_path, "../model/carprice_prediction_a3.model"), 'rb'))
+
+def test_model_accepts_input():
+    """Test if the model accepts input and does not throw an error"""
+    try:
+        data = np.array([[1000, 35, 5000, 2015]])
+        np.exp(model.predict(data))
+        passed = True
+    except Exception as e:
+        passed = False
+    assert passed, "Model failed to accept input format"
 
 
-#testing if the output of the model has the expected shape
-def test_prediction():
-    output = prediction(1248.0, 19.391961863322244, 60000.0, 2015.0)
-    assert output.shape == (1,), f"Expected output shape: (1,), Got: {output.shape}"
+def test_model_output_shape():
+    """Test if the model output shape is (1,)"""
+    data = np.array([[1000, 35, 5000, 2015]])
+    prediction = np.exp(model.predict(data))
+    assert prediction.shape == (1,), f"Expected shape (1,), but got {prediction.shape}"

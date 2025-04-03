@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,34 +22,23 @@ jobs:
     - name: Deploy Docker Image to DockerHub
       run: docker push inisha5563/car_price_prediction:a3
 
-    - name: Configure Docker and SSH Access
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/st125563
-        chmod 600 ~/.ssh/st125563
-
-        cat << 'EOF' > ~/.ssh/config
-        Host bazooka
-          HostName bazooka.cs.ait.ac.th
-          User st125563
-          IdentityFile ~/.ssh/st125563
-        Host ml2023
-          HostName ml.brain.cs.ait.ac.th
-          User st125563
-          IdentityFile ~/.ssh/st125563
-          ProxyJump bazooka
-          StrictHostKeyChecking no
-          UserKnownHostsFile /dev/null
-        EOF
-        chmod 600 ~/.ssh/config
-
-        ssh-keyscan -p 22 -H bazooka.cs.ait.ac.th >> ~/.ssh/known_hosts 2>/dev/null 
-        chmod 600 ~/.ssh/known_hosts
-
-    - name: Deploy to ml2025
-      run: |
-        ssh -v st125563@ml2023 << 'EOF'
-        cd st125563/
-        docker compose down
-        docker compose up --pull always -d 
-        EOF
+  deploy:
+    # environment: Production
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ vars.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          proxy_host: ${{ vars.PROXY_HOST }}
+          proxy_username: ${{ secrets.USERNAME }}
+          proxy_password: ${{ secrets.PROXY_PASSWORD }}
+          proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker pull sachinmalego/carpredictionasgthree:latest
+            docker compose -f st125563/docker-compose.yaml down --remove-orphans
+            docker compose -f st125563/docker-compose.yaml down --remove-orphans 
+            docker compose -f st125563/docker-compose.yaml up -d
