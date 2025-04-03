@@ -67,6 +67,7 @@ jobs:
           proxy_timeout: 30s
           command_timeout: 10m
           script: |
+            whoami  # Debug: Confirm the user
             docker pull inisha5563/a3-car-price:latest
             docker compose -f /path/to/docker-compose.yaml down --remove-orphans
             docker compose -f /path/to/docker-compose.yaml up -d
