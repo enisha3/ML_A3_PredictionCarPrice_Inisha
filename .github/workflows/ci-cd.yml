@@ -51,6 +51,5 @@ jobs:
         ssh -v st125563@ml2023 << 'EOF'
         cd st125563/
         docker compose down
-        docker compose pull 
-        docker compose up -d 
+        docker compose up --pull always -d 
         EOF

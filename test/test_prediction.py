@@ -1,4 +1,4 @@
-from app import prediction, get_X
+from app.app import prediction, get_X
 
 features_val = ['1248.0', '19.391961863322244','60000.0','2015.0']
 
