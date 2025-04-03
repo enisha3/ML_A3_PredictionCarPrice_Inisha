@@ -4,7 +4,7 @@ import numpy as np
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 
-model = cloudpickle.load(open(os.path.join(base_path, "../model/carprice_prediction_a3.model"), 'rb'))
+model = cloudpickle.load(open(os.path.join(base_path, "/model/carprice_prediction_a3.model"), 'rb'))
 
 def test_model_accepts_input():
     """Test if the model accepts input and does not throw an error"""
