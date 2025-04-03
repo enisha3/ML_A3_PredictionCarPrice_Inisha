@@ -62,7 +62,7 @@ jobs:
           proxy_password: ${{ secrets.PROXY_PASSWORD }}
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull sachinmalego/carpredictionasgthree:latest
+            docker pull inisha5563/a3-car-price:latest
             docker compose -f st125563/docker-compose.yaml down --remove-orphans
             docker compose -f st125563/docker-compose.yaml down --remove-orphans 
             docker compose -f st125563/docker-compose.yaml up -d
