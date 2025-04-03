@@ -69,7 +69,7 @@ pyasn1_modules==0.4.1
 pydantic==2.10.6
 pydantic_core==2.27.2
 Pygments==2.19.1
-pyparsing==3.2.1git 
+pyparsing
 python-dateutil==2.9.0.post0
 pytz==2025.1
 PyYAML==6.0.2
