@@ -20,12 +20,31 @@ This project is a web app that uses a machine learning model with Dash by Plotly
 
 Once the app is running, users can enter data through the web interface. If they leave some fields empty, the system fills in the missing values automatically and makes predictions using the built-in machine learning model.
 
+## Run Locally
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/enisha3/ML_A3_PredictionCarPrice_Inisha.git
+
+2. Navigate into the project directory:
+   ```bash
+   cd <yourproject_dir>
+
+3. Run Dockerfile:
+   ```bash
+   docker compose up
+
+4. Run the application:
+   ```bash
+    python3 app/app.py
+
 ## RUNNING APPLICATION:
 mlflow logs: https://mlflow.ml.brain.cs.ait.ac.th/<experiment_name: st125563-a3>
 docker hub image: https://hub.docker.com/repository/docker/inisha5563/car_price_prediction/general
 brain lab server: https://inishacarpricepredictor-st125563.ml.brain.cs.ait.ac.th/
 
 ## Application running on server images:
-![Imageone](Screenshots/UI_with_default_values_for_predictingcarprice.png)
+![Imageone](screenshots/mlflow_environment.png)
 
-![Imagetwo](Screenshots/UI_after_inserting_values_for_predictingcarprice.png)
+![Imagetwo](screenshots/mlflow_model.png)
+
+![Imagetwo](screenshots/UI Design.png)
