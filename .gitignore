@@ -1,1 +1,3 @@
 .vscode-server/
+.pytest_cache/
+.config/
