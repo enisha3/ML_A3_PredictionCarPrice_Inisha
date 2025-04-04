@@ -39,7 +39,9 @@ Once the app is running, users can enter data through the web interface. If they
 
 ## RUNNING APPLICATION:
 mlflow logs: https://mlflow.ml.brain.cs.ait.ac.th/<experiment_name: st125563-a3>
+
 docker hub image: https://hub.docker.com/repository/docker/inisha5563/car_price_prediction/general
+
 brain lab server: https://inishacarpricepredictor-st125563.ml.brain.cs.ait.ac.th/
 
 ## Application running on server images:
@@ -47,4 +49,4 @@ brain lab server: https://inishacarpricepredictor-st125563.ml.brain.cs.ait.ac.th
 
 ![Imagetwo](screenshots/mlflow_model.png)
 
-![Imagetwo](screenshots/UI Design.png)
+![Imagethree](screenshots/UI_Design.png)
