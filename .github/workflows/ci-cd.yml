@@ -61,13 +61,12 @@ jobs:
           proxy_username: ${{ secrets.USERNAME }}
           proxy_password: ${{secrets.PROXY_PASSWORD}}
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          proxy_port: 22
-          timeout: 30s
-          proxy_timeout: 30s
-          command_timeout: 10m
+          # port: 22
+          # proxy_port: 22
+          # timeout: 30s
+          # proxy_timeout: 30s
+          # command_timeout: 10m
           script: |
-            whoami  # Debug: Confirm the user
             docker pull inisha5563/a3-car-price:latest
             docker compose -f /path/to/docker-compose.yaml down --remove-orphans
             docker compose -f /path/to/docker-compose.yaml up -d
