@@ -4,23 +4,25 @@ This project is a web app that uses a machine learning model with Dash by Plotly
 
 ## Project Structure
 
-- `A2_PredictingCarPrice`: Consists of all the .ipynb and all related to this project.
+- `A3_PredictingCarPrice`: Consists of all the .ipynb and all related to this project.
 - `app.py`: Main application file.
 - `app/`: Folder containing pages UI.
 - `model/`: Folder containing the machine learning model.
-- `LinearRegression.py`: Script for handling classes.
+- `test_prediction.py`: CICD test file.
+- `test/`: Folder containing test file while doing CICD.
 - `.Dockerfile`: Installs list of dependencies needed to run the application.
 - `docker-compose.yaml`: Needed to run the dockerize the container.
-- `Screenshots`: Consists of images of mlflow and Ui Image that is runned in ml server.
+- `Screenshots`: Consists of images of mlflow environment, mlflow model and Ui Image that is runned in ml server.
 - `README.md`: Project documentation.
+- `requirements.txt`: Consists of all the name and version of .
 
 ## Usage
 
 Once the app is running, users can enter data through the web interface. If they leave some fields empty, the system fills in the missing values automatically and makes predictions using the built-in machine learning model.
 
 ## RUNNING APPLICATION:
-local mlflow logs: http://127.0.0.1:5000/<experiment_name: st125563-Inisha>   
-docker hub image: https://hub.docker.com/repositories/inisha5563
+mlflow logs: https://mlflow.ml.brain.cs.ait.ac.th/<experiment_name: st125563-a3>
+docker hub image: https://hub.docker.com/repository/docker/inisha5563/car_price_prediction/general
 brain lab server: https://inishacarpricepredictor-st125563.ml.brain.cs.ait.ac.th/
 
 ## Application running on server images:
