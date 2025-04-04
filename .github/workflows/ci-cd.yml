@@ -51,15 +51,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SSH Remote Commands
-        uses: appleboy/ssh-action@v1
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          proxy_host: ${{vars.PROXY_HOST}}
+          host: ${{vars.host}}
+          username: ${{ secrets.USERNAME}}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          proxy_host: ${{vars.proxy_host}}
           proxy_username: ${{ secrets.USERNAME }}
           proxy_password: ${{secrets.PROXY_PASSWORD}}
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          host: ${{vars.HOST}}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker pull inisha5563/car_price_prediction:a3
             docker compose -f /path/to/docker-compose.yaml down --remove-orphans
