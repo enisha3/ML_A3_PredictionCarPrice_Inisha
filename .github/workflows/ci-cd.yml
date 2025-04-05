@@ -55,11 +55,9 @@ jobs:
         with:
           host: ${{vars.HOST}}
           username: ${{ secrets.USERNAME}}
-          password: ${{ secrets.PASSWORD}}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           proxy_host: ${{vars.PROXY_HOST}}
           proxy_username: ${{ secrets.USERNAME }}
-          proxy_password: ${{secrets.PROXY_PASSWORD}}
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker pull inisha5563/car_price_prediction:a3
