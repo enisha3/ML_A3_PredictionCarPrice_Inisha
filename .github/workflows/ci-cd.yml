@@ -61,6 +61,6 @@ jobs:
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             docker pull inisha5563/car_price_prediction:a3
-            docker compose -f /path/to/docker-compose.yaml down --remove-orphans
-            docker compose -f /path/to/docker-compose.yaml up -d
+            docker compose -f /st125563/docker-compose.yaml down --remove-orphans
+            docker compose -f /st125563/docker-compose.yaml up -d
           debug: true
